@@ -6,7 +6,7 @@ const app = express();
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
 app.use(bodyparser.urlencoded({extended: false}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + 'public'));
 app.use(session({
   secret: 'lkasdhgklh309LKjdakas',
   resave: false,
@@ -18,16 +18,15 @@ const users = [
   {username: "Sam", password: "appolo", name: "Sam"},
 ];
 
-let response = "Please check your username and password";
-
 app.get('/login', function(req, res) {
 res.render("index");
 
 });
 
 app.get('/home', function(req, res){
-res.render('home', {users: req.session.user });  //this needs to change to be {users: uses the info from the session}
+res.render('home', {users: req.session.user });
 });
+
 
 app.post('/login', function (req, res) {
 let user = null;
